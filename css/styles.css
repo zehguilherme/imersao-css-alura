@@ -40,6 +40,7 @@ header {
   position: fixed; /*Menu sempre fica accessível no topo da tela*/
   width: 100vw; /*Ocupar toda a largura da tela*/
   top: 0; /*Deixa no topo*/ /*Funciona devido ao position*/
+  z-index: 1;
 }
 
 .menu ul {
@@ -54,6 +55,12 @@ header {
 .menu a {
   display: block;
   padding: 10px 20px;
+  transition: background-color 1s, color, 1s; /*especificação das propriedades e do tempo*/
+}
+
+.menu a:hover {
+  background-color: teal;
+  color: white;
 }
 
 a {
@@ -63,6 +70,22 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.titulo {
+  transform: scale(0.2) translateY(50vh);
+  opacity: 0;
+
+  animation: linear 2s animacaoTitulo forwards; /*forwards: vai pra frente e para no último estado de animação*/
+}
+
+/* Funciona por porcentagens da animação */
+@keyframes animacaoTitulo {
+  /* Estado final da animação */
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
 
 .site-title,
@@ -81,11 +104,13 @@ a:hover {
   line-height: 2.4em;
 }
 
+.contato,
 .projetos {
   padding: 2em;
-  height: 100vh;
+  min-height: 100vh; /*altura mínima*/
 }
 
+.contato h2,
 .projetos h2 {
   font-size: 2em;
   margin-bottom: 1.5em;
@@ -119,6 +144,11 @@ a:hover {
   height: 200px;
   width: 180px;
   object-fit: cover; /*mesma proporção mas preenchendo a altura e largura definidas anteriormente*/
+  transition: transform 500ms;
+}
+
+.img-projetos:hover {
+  transform: scale(1.2); /*escala padrão de qualquer elemento é 1*/
 }
 
 @media (min-width: 1200px) {
@@ -126,4 +156,20 @@ a:hover {
     height: auto;
     width: 100%;
   }
+}
+
+.contato .icons {
+  text-align: center;
+}
+
+.contato a {
+  color: whitesmoke;
+  font-size: 4em;
+  transition: text-shadow 1s;
+}
+
+.contato:active, /*active: momento de ativação do elemento, no caso o clique do mouse*/
+.contato a:hover {
+  text-decoration: none;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
 }
